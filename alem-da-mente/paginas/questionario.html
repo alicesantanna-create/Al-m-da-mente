@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Questionário — Além da Mente</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Quattrocento:wght@400;700&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Quicksand", sans-serif;
+            background: #aebbb1;
+            color: #17231d;
+            padding: 60px 20px;
+        }
+
+        .quiz-box {
+            width: 100%;
+            max-width: 750px;
+            margin: auto;
+            background: #e9eeea;
+            border-radius: 18px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,.12);
+        }
+
+        h1 {
+            font-size: clamp(32px, 6vw, 50px);
+            text-align: center;
+            margin-bottom: 15px;
+            color: #17231d;
+        }
+
+        .intro {
+            text-align: center;
+            font-family: "Quattrocento", serif;
+            color: #68746d;
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .aviso {
+            padding: 15px;
+            background: #dce4de;
+            border-left: 3px solid #8B1E2D;
+            color: #59655d;
+            font-family: "Quattrocento", serif;
+            font-size: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .pergunta {
+            padding: 25px 0;
+            border-bottom: 1px solid rgba(0,0,0,.08);
+        }
+
+        .pergunta h3 {
+            font-family: "Quattrocento", serif;
+            font-size: 19px;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .opcoes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .opcoes label {
+            cursor: pointer;
+        }
+
+        .opcoes input {
+            display: none;
+        }
+
+        .opcoes span {
+            display: block;
+            padding: 10px 17px;
+            border: 1px solid #aab5ad;
+            border-radius: 8px;
+            color: #536158;
+            font-family: "Quattrocento", serif;
+            transition: .3s;
+        }
+
+        .opcoes span:hover {
+            border-color: #8B1E2D;
+        }
+
+        .opcoes input:checked + span {
+            background: #8B1E2D;
+            color: white;
+            border-color: #8B1E2D;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            margin-top: 30px;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 8px;
+            background: #8B1E2D;
+            color: white;
+            font-family: "Quicksand", sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(139,30,45,.20);
+        }
+
+        .resultado {
+            display: none;
+            margin-top: 25px;
+            padding: 25px;
+            background: white;
+            border-radius: 12px;
+            border-left: 4px solid #8B1E2D;
+        }
+
+        .resultado.mostrar {
+            display: block;
+        }
+
+        .resultado h3 {
+            color: #8B1E2D;
+            margin-bottom: 12px;
+            font-size: 23px;
+        }
+
+        .resultado p {
+            font-family: "Quattrocento", serif;
+            color: #68746d;
+            font-size: 17px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .voltar {
+            display: block;
+            margin-top: 25px;
+            text-align: center;
+            color: #536158;
+            font-family: "Quattrocento", serif;
+            text-decoration: none;
+        }
+
+        .voltar:hover {
+            color: #8B1E2D;
+        }
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 25px 12px;
+            }
+
+            .quiz-box {
+                padding: 25px 20px;
+            }
+
+            .opcoes {
+                flex-direction: column;
+            }
+
+            .opcoes label,
+            .opcoes span {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="quiz-box">
+
+        <h1>Como você tem se sentido?</h1>
+
+        <p class="intro">
+            Este questionário é apenas para reflexão.
+            Ele não é um diagnóstico.
+        </p>
+
+        <div class="aviso">
+            ⚠️ Este questionário é educativo e não substitui avaliação de profissionais de saúde.
+        </div>
+
+
+        <!-- PERGUNTA 1 -->
+
+        <div class="pergunta">
+
+            <h3>
+                1. Nas últimas semanas, você teve dificuldade para lidar com suas emoções?
+            </h3>
+
+            <div class="opcoes">
+
+                <label>
+                    <input type="radio" name="q1" value="sim">
+                    <span>Sim</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="q1" value="asvezes">
+                    <span>Às vezes</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="q1" value="nao">
+                    <span>Não</span>
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- PERGUNTA 2 -->
+
+        <div class="pergunta">
+
+            <h3>
+                2. Você tem alguém com quem conversar quando passa por um momento difícil?
+            </h3>
+
+            <div class="opcoes">
+
+                <label>
+                    <input type="radio" name="q2" value="sim">
+                    <span>Sim</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="q2" value="asvezes">
+                    <span>Às vezes</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="q2" value="nao">
+                    <span>Não</span>
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- PERGUNTA 3 -->
+
+        <div class="pergunta">
+
+            <h3>
+                3. Você costuma guardar seus problemas para não preocupar outras pessoas?
+            </h3>
+
+            <div class="opcoes">
+
+                <label>
+                    <input type="radio" name="q3" value="nao">
+                    <span>Não</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="q3" value="asvezes">
+                    <span>Às vezes</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="q3" value="sim">
+                    <span>Sim</span>
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- PERGUNTA 4 -->
+
+        <div class="pergunta">
+
+            <h3>
+                4. Você sabe onde procurar ajuda quando percebe que não está bem?
+            </h3>
+
+            <div class="opcoes">
+
+                <label>
+                    <input type="radio" name="q4" value="sim">
+                    <span>Sim</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="q4" value="asvezes">
+                    <span>Mais ou menos</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="q4" value="nao">
+                    <span>Não</span>
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- PERGUNTA 5 -->
+
+        <div class="pergunta">
+
+            <h3>
+                5. Nas últimas semanas, você tem conseguido fazer coisas que normalmente gosta?
+            </h3>
+
+            <div class="opcoes">
+
+                <label>
+                    <input type="radio" name="q5" value="sim">
+                    <span>Sim</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="q5" value="asvezes">
+                    <span>Às vezes</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="q5" value="nao">
+                    <span>Não</span>
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- PERGUNTA 6 -->
+
+        <div class="pergunta">
+
+            <h3>
+                6. Você tem sentido dificuldade de se concentrar nas suas atividades?
+            </h3>
+
+            <div class="opcoes">
+
+                <label>
+                    <input type="radio" name="q6" value="sim">
+                    <span>Sim</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="q6" value="asvezes">
+                    <span>Às vezes</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="q6" value="nao">
+                    <span>Não</span>
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- PERGUNTA 7 -->
+
+        <div class="pergunta">
+
+            <h3>
+                7. Você tem se sentido cansado(a) mesmo depois de descansar?
+            </h3>
+
+            <div class="opcoes">
+
+                <label>
+                    <input type="radio" name="q7" value="sim">
+                    <span>Sim</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="q7" value="asvezes">
+                    <span>Às vezes</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="q7" value="nao">
+                    <span>Não</span>
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- PERGUNTA 8 -->
+
+        <div class="pergunta">
+
+            <h3>
+                8. Você tem percebido mudanças no seu humor que parecem difíceis de controlar?
+            </h3>
+
+            <div class="opcoes">
+
+                <label>
+                    <input type="radio" name="q8" value="sim">
+                    <span>Sim</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="q8" value="asvezes">
+                    <span>Às vezes</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="q8" value="nao">
+                    <span>Não</span>
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- PERGUNTA 9 -->
+
+        <div class="pergunta">
+
+            <h3>
+                9. Quando algo fica difícil, você consegue conversar com alguém sobre isso?
+            </h3>
+
+            <div class="opcoes">
+
+                <label>
+                    <input type="radio" name="q9" value="sim">
+                    <span>Sim</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="q9" value="asvezes">
+                    <span>Às vezes</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="q9" value="nao">
+                    <span>Não</span>
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- PERGUNTA 10 -->
+
+        <div class="pergunta">
+
+            <h3>
+                10. Você sente que gostaria de ter mais apoio para lidar com o que está acontecendo?
+            </h3>
+
+            <div class="opcoes">
+
+                <label>
+                    <input type="radio" name="q10" value="sim">
+                    <span>Sim</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="q10" value="talvez">
+                    <span>Talvez</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="q10" value="nao">
+                    <span>Não</span>
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- BOTÃO VER ORIENTAÇÃO -->
+
+        <button
+            type="button"
+            onclick="mostrarOrientacao()"
+            class="btn">
+            Ver orientação
+        </button>
+
+
+        <!-- RESULTADO -->
+
+        <div id="orientacao" class="resultado"></div>
+
+
+        <!-- BOTÃO REINICIAR -->
+
+        <button
+            type="button"
+            onclick="reiniciarQuestionario()"
+            class="btn">
+            Reiniciar questionário
+        </button>
+
+
+        <!-- VOLTAR -->
+
+        <a
+            class="voltar"
+            href="../index.html">
+            ← Voltar para o início
+        </a>
+
+    </div>
+
+
+    <script>
+
+        function mostrarOrientacao() {
+
+            let pontos = 0;
+
+            const totalPerguntas = 10;
+
+
+            // Verifica se todas foram respondidas
+
+            for (let i = 1; i <= totalPerguntas; i++) {
+
+                const resposta = document.querySelector(
+                    'input[name="q' + i + '"]:checked'
+                );
+
+                if (!resposta) {
+
+                    const resultado = document.getElementById("orientacao");
+
+                    resultado.innerHTML = `
+                        <h3>Quase lá 🌱</h3>
+
+                        <p>
+                            Responda todas as perguntas antes de ver sua orientação.
+                            Não existe resposta certa ou errada.
+                        </p>
+                    `;
+
+                    resultado.style.display = "block";
+                    resultado.classList.add("mostrar");
+
+                    resultado.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+
+                    return;
+                }
+
+            }
+
+
+            // ==============================
+            // CALCULA A PONTUAÇÃO
+            // ==============================
+
+            const respostas = {};
+
+            for (let i = 1; i <= totalPerguntas; i++) {
+
+                respostas[i] = document.querySelector(
+                    'input[name="q' + i + '"]:checked'
+                ).value;
+
+            }
+
+
+            // Perguntas em que SIM aumenta a pontuação
+
+            if (respostas[1] === "sim") pontos += 2;
+            else if (respostas[1] === "asvezes") pontos += 1;
+
+
+            // Pergunta 2
+
+            if (respostas[2] === "nao") pontos += 2;
+            else if (respostas[2] === "asvezes") pontos += 1;
+
+
+            // Pergunta 3
+
+            if (respostas[3] === "sim") pontos += 2;
+            else if (respostas[3] === "asvezes") pontos += 1;
+
+
+            // Pergunta 4
+
+            if (respostas[4] === "nao") pontos += 2;
+            else if (respostas[4] === "asvezes") pontos += 1;
+
+
+            // Pergunta 5
+
+            if (respostas[5] === "nao") pontos += 2;
+            else if (respostas[5] === "asvezes") pontos += 1;
+
+
+            // Pergunta 6
+
+            if (respostas[6] === "sim") pontos += 2;
+            else if (respostas[6] === "asvezes") pontos += 1;
+
+
+            // Pergunta 7
+
+            if (respostas[7] === "sim") pontos += 2;
+            else if (respostas[7] === "asvezes") pontos += 1;
+
+
+            // Pergunta 8
+
+            if (respostas[8] === "sim") pontos += 2;
+            else if (respostas[8] === "asvezes") pontos += 1;
+
+
+            // Pergunta 9
+
+            if (respostas[9] === "nao") pontos += 2;
+            else if (respostas[9] === "asvezes") pontos += 1;
+
+
+            // Pergunta 10
+
+            if (respostas[10] === "sim") pontos += 2;
+            else if (respostas[10] === "talvez") pontos += 1;
+
+
+            // ==============================
+            // MOSTRA A ORIENTAÇÃO
+            // ==============================
+
+            const resultado = document.getElementById("orientacao");
+
+
+            if (pontos <= 5) {
+
+                resultado.innerHTML = `
+                    <h3>Continue cuidando de você 🌱</h3>
+
+                    <p>
+                        Suas respostas mostram alguns aspectos positivos
+                        no seu bem-estar neste momento.
+                    </p>
+
+                    <p>
+                        Continue prestando atenção às suas emoções,
+                        ao seu descanso, aos seus relacionamentos e
+                        à forma como você lida com situações difíceis.
+                    </p>
+
+                    <p>
+                        Cuidar da saúde mental também é uma forma de prevenção.
+                    </p>
+                `;
+
+            }
+
+            else if (pontos <= 11) {
+
+                resultado.innerHTML = `
+                    <h3>Talvez seja um bom momento para olhar com mais atenção 💚</h3>
+
+                    <p>
+                        Algumas das suas respostas mostram aspectos
+                        que podem merecer mais atenção no dia a dia.
+                    </p>
+
+                    <p>
+                        Conversar com uma pessoa de confiança pode
+                        ser um primeiro passo.
+                    </p>
+
+                    <p>
+                        Se essas dificuldades continuarem ou estiverem
+                        atrapalhando sua rotina, considere procurar
+                        apoio de um profissional de saúde.
+                    </p>
+                `;
+
+            }
+
+            else {
+
+                resultado.innerHTML = `
+                    <h3>Você merece apoio 🤝</h3>
+
+                    <p>
+                        Suas respostas mostram vários aspectos que
+                        podem estar tornando este momento mais difícil.
+                    </p>
+
+                    <p>
+                        Você não precisa lidar com tudo sozinho(a).
+                        Considere conversar com alguém de confiança
+                        e buscar orientação de um profissional de saúde.
+                    </p>
+
+                    <p>
+                        Este resultado é apenas uma reflexão educativa
+                        e não representa um diagnóstico.
+                    </p>
+                `;
+
+            }
+
+
+            resultado.style.display = "block";
+            resultado.classList.add("mostrar");
+
+
+            resultado.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+        }
+
+
+        // =====================================================
+        // REINICIAR
+        // =====================================================
+
+        function reiniciarQuestionario() {
+
+            // 1. Desmarca TODAS as respostas
+
+            const radios = document.querySelectorAll(
+                'input[type="radio"]'
+            );
+
+            radios.forEach(function(radio) {
+                radio.checked = false;
+            });
+
+
+            // 2. Limpa completamente a orientação
+
+            const resultado =
+                document.getElementById("orientacao");
+
+            resultado.innerHTML = "";
+
+            resultado.classList.remove("mostrar");
+
+            resultado.style.display = "none";
+
+
+            // 3. Volta para o topo
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+    </script>
+
+</body>
+
+</html>
